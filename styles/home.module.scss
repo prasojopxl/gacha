@@ -1,0 +1,26 @@
+@import "../styles/var.scss";
+
+.titleNumber {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    padding-top: 5px;
+    min-height: 32px;
+    border-bottom: $color-gray2 solid 1px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    span {
+        background: $color-blue;
+        display: flex;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 32px;
+        height: 32px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        color: #fff;
+        border-radius: 50%;
+    }
+}

@@ -1,0 +1,79 @@
+@import "../styles/var";
+
+.bodyweb {
+    height: 100vh;
+    padding-top: 69px;
+}
+
+.contents {
+    margin: 0 auto;
+    max-width: $container;
+    padding: 30px 15px;
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    .left {
+        width: 320px;
+        h4 {
+            font-size: 22px;
+            position: relative;
+            padding-bottom: 7px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            &:before {
+                content: "";
+                background: $color-gold3;
+                width: 50px;
+                height: 3px;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+            }
+        }
+        h5 {
+            font-size: 16px;
+            margin: 10px 0;
+            color: $color-blue;
+            text-align: center;
+        }
+        h6 {
+            color: $color-gray;
+            font-weight: normal;
+            font-size: 14px;
+            display: block;
+            text-align: center;
+            margin-bottom: 0;
+        }
+    }
+    .right {
+        flex: 1;
+        margin-left: $space;
+    }
+}
+.rewards {
+    margin: 0;
+    padding: 0;
+    margin-top: 15px;
+    li {
+        list-style: none;
+        position: relative;
+        padding-left: 40px;
+        padding-top: 5px;
+        min-height: 32px;
+        margin-bottom: 10px;
+        span {
+            background: $color-blue;
+            display: flex;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            color: #fff;
+            border-radius: 50%;
+        }
+    }
+}

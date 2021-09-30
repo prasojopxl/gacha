@@ -1,0 +1,11 @@
+@import "../../styles/var";
+
+.box {
+    padding: 20px;
+    background: #fff;
+    border-radius: $radius;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin-bottom: $space;
+}

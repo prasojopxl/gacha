@@ -1,0 +1,28 @@
+$container: 1140px;
+$color-red: #ed1b4d;
+$color-gold: #e3dfbb;
+$color-gold2: #eeeac9;
+$color-gold3: #e08d4a;
+$color-gold4: #cead39;
+$color-blue: #4594df;
+$color-gray: #a6a6a6;
+$color-gray2: #e5e5e5;
+$radius: 5px;
+$animate: all ease-out 0.4s;
+$space: 15px;
+
+.btn {
+    background: $color-gold4;
+    color: #fff;
+    border-radius: $radius;
+    padding: 12px 15px;
+    border: #fff solid 1px;
+    min-width: 150px;
+    text-align: center;
+    display: inline-block;
+    transition: $animate;
+    &:hover {
+        transition: $animate;
+        background: $color-red;
+    }
+}
