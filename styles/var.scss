@@ -22,6 +22,7 @@ $space: 15px;
     text-align: center;
     display: inline-block;
     transition: $animate;
+    cursor: pointer;
     &:hover {
         transition: $animate;
         background: $color-red;

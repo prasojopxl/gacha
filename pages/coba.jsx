@@ -5,7 +5,7 @@ import styles from "../styles/page.module.scss";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Page() {
+export default function Coba() {
     const [number, setNumber] = useState([])
     const dataVoucher = [
         {
@@ -17,7 +17,7 @@ export default function Page() {
         {
             id: 1,
             code: "ABC111",
-            hadiah: "Pulsa 20rb",
+            hadiah: "Kurang Beruntung",
             status: "active"
         },
         {
