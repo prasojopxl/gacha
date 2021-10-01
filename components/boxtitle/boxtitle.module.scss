@@ -1,0 +1,39 @@
+@import "../../styles/var";
+
+.box {
+    background: $color-red;
+    border-radius: 10px;
+    padding: 5px;
+    display: inline-block;
+    box-shadow: inset 0px 2px 4px #f08075;
+}
+
+.content {
+    border: $color-gold5 dashed 1px;
+    position: relative;
+    border-radius: 5px;
+    padding: 4px 10px;
+    color: #fff;
+    span {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        text-transform: capitalize;
+        &::before {
+            content: "";
+            background: url("../../public/ball.svg");
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        &::after {
+            content: "";
+            background: url("../../public/ball.svg");
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+    }
+}

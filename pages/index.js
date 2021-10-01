@@ -1,6 +1,8 @@
 import { Box } from "../components";
 import Layout from "../layout";
 import styles from "../styles/home.module.scss";
+import Link from "next/link";
+import { baseUrl } from "../config/var";
 
 export default function Home() {
     return (
@@ -17,9 +19,9 @@ export default function Home() {
                 </div>
                 <input type="text" placeholder="Masukan Nomor" />
             </Box>
-            <a href="#" className={styles.btn}>
-                Get Started
-            </a>
+            <Link href={baseUrl + "/page"}>
+                <a className={styles.btn}>Get Started</a>
+            </Link>
         </Layout>
     );
 }

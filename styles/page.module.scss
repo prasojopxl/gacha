@@ -1,0 +1,41 @@
+@import "../styles/var.scss";
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: $color-gray solid 1px;
+    padding: 12px 0;
+    margin-bottom: $space * 2;
+    h4 {
+        font-size: 18px;
+        font-weight: normal;
+        margin: 0;
+    }
+    h5 {
+        font-size: 16px;
+        font-weight: normal;
+        margin: 0;
+        span {
+            color: $color-red;
+        }
+    }
+}
+
+.h100 {
+    height: 100%;
+}
+
+.boxGame {
+    background: url("../public/hero.jpg");
+    background-clip: cover;
+    width: 100%;
+    min-height: 100px;
+    border-radius: $radius * 2;
+    text-align: center;
+    padding: $space;
+}
+
+.containerGacha {
+    margin: 50px auto;
+}

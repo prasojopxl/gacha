@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { Fragment } from "react";
 import { Header, Box } from "../components";
@@ -14,8 +15,8 @@ export default function Layout(props) {
             <div className={styles.bodyweb}>
                 <div className={styles.contents}>
                     <div className={styles.left}>
-                        <Box>
-                            <img src="/sidebaner.png" srcSet="/sidebaner.png 1x, /sidebar@2x.jpg 2x" alt="sidebar image" />
+                        <Box Height="100%">
+                            <img src="sidebaner.png" srcSet="sidebaner.png 1x, sidebar@2x.jpg 2x" alt="sidebar image" />
                             <h4>Undian Berhadiah</h4>
                             <h5>Periode October 2021</h5>
                             <ul className={styles.rewards}>
