@@ -21,7 +21,7 @@
         text-transform: capitalize;
         &::before {
             content: "";
-            background: url("../../public/ball.svg");
+            background: url("https://stagingaja.com/static/ball.svg");
             width: 15px;
             height: 15px;
             display: inline-block;
@@ -29,7 +29,7 @@
         }
         &::after {
             content: "";
-            background: url("../../public/ball.svg");
+            background: url("https://stagingaja.com/static/ball.svg");
             width: 15px;
             height: 15px;
             display: inline-block;
