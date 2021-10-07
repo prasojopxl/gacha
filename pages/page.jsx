@@ -53,7 +53,7 @@ export default function Page() {
                     <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
                     <div className={styles.containerGacha}>
                         <img src="gacha.svg" alt="gacha" />
-                        <h2>{number}</h2>
+                        <p>{number}</p>
                     </div>
                     <a className={styles.btn} onClick={handleClick}>Play</a>
                 </div>

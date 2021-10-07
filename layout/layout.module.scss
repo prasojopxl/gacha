@@ -46,8 +46,25 @@
         }
     }
     .right {
-        flex: 1;
         margin-left: $space;
+        order: 1;
+        flex: 1;
+    }
+    @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        .left,
+        .right {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .left {
+            order: 2;
+        }
+        .right {
+            order: 1;
+        }
     }
 }
 .rewards {
@@ -76,4 +93,7 @@
             border-radius: 50%;
         }
     }
+}
+
+.homePage {
 }
