@@ -34,7 +34,7 @@ export default function Layout(props) {
             <Header />
             <div className={styles.bodyweb}>
                 <div className={styles.contents}>
-                    {router.pathname === "/page" && <BoxLeft />}
+                    {router.pathname === "/" ? <div className={styles.hideXs}><BoxLeft /></div> : <BoxLeft />}
                     <div className={styles.right}>
                         {props.children}
                     </div>

@@ -7,9 +7,9 @@ import { useState } from "react";
 function HeaderMenu() {
     return (
         <ul>
-            <li><Link href="#"><a>Home</a></Link></li>
-            <li><Link href="#"><a>Cek Pesanan</a></Link></li>
-            <li><Link href="#"><a>Masuk</a></Link></li>
+            <li><Link href="https://onetopup.id/"><a>Home</a></Link></li>
+            <li><Link href="https://onetopup.id/status"><a>Cek Pesanan</a></Link></li>
+            <li><Link href="https://onetopup.id/user/login"><a>Masuk</a></Link></li>
         </ul>
     )
 }

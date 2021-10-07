@@ -53,6 +53,7 @@
     @media (max-width: 767px) {
         display: flex;
         flex-direction: column;
+        padding: $space;
         .left,
         .right {
             width: 100%;

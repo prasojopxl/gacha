@@ -28,3 +28,9 @@ $space: 15px;
         background: $color-red;
     }
 }
+
+@media (max-width: 767px) {
+    .hideXs {
+        display: none !important;
+    }
+}
