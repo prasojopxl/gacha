@@ -5,9 +5,9 @@ import Link from "next/link";
 import { baseUrl } from "../config/var";
 import { fetchData } from "../config/data";
 
-export default function Home(props) {
+export default function Home({ dataHadiah, dataBaner }) {
     return (
-        <Layout listHadiah={props.dataHadiah} listBanner={props.dataBaner}>
+        <Layout listHadiah={dataHadiah} listBanner={dataBaner}>
             <Box>
                 <div className={styles.titleNumber}>
                     <span>1</span>Masukan Code Tiket

@@ -44,7 +44,7 @@ export default function Page(props) {
     };
 
     return (
-        <Layout listHadiah={props.dataHadiah} listBanner={props.dataBaner}>
+        <div>
             <Box Height="100%">
                 <div className={styles.title}>
                     <h4 className={styles.hideXs}>Collect your prize</h4>
@@ -62,15 +62,15 @@ export default function Page(props) {
                     <a className={styles.btn} onClick={handleClick}>Play</a>
                 </div>
             </Box>
-        </Layout>
+        </div>
     )
 }
 
-export async function getStaticProps() {
-    const dataHadiah = await fetchData(`Hadiah`);
-    const dataBaner = await fetchData(`Banner/read_banner`);
-    return {
-        props: { dataHadiah, dataBaner },
-        revalidate: 5
-    };
-}
+// export async function getStaticProps() {
+//     const dataHadiah = await fetchData(`Hadiah`);
+//     const dataBaner = await fetchData(`Banner/read_banner`);
+//     return {
+//         props: { dataHadiah, dataBaner },
+//         revalidate: 5
+//     };
+// }
