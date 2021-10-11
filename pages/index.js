@@ -3,6 +3,7 @@ import Layout from "../layout";
 import styles from "../styles/home.module.scss";
 import Link from "next/link";
 import { apiUrl, baseUrl } from "../config/var";
+import { fetchData } from "../config/data";
 
 export default function Home(props) {
     console.log(props.dataHadiah);
@@ -28,8 +29,9 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-    const resDataHadiah = await fetch(`${apiUrl}Hadiah`);
-    const dataHadiah = await resDataHadiah.json();
+    // const resDataHadiah = await fetch(`${apiUrl}Hadiah`);
+    // const dataHadiah = await resDataHadiah.json();
+    const dataHadiah = await fetchData(`Hadiah`);
     return {
         props: { dataHadiah },
         revalidate: 5,
