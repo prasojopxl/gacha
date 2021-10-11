@@ -2,7 +2,6 @@ import { Box } from "../components";
 import Layout from "../layout";
 import styles from "../styles/home.module.scss";
 import Link from "next/link";
-import { baseUrl } from "../config/var";
 
 export default function Home({ dataHadiah, dataBaner }) {
     return (
