@@ -3,7 +3,6 @@ import Layout from "../layout";
 import styles from "../styles/home.module.scss";
 import Link from "next/link";
 import { apiUrl, baseUrl } from "../config/var";
-import { fetchData } from "../config/data";
 
 export default function Home(props) {
     console.log(props.dataHadiah);
