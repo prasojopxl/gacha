@@ -3,12 +3,10 @@ import Layout from "../layout";
 import styles from "../styles/home.module.scss";
 import Link from "next/link";
 import { apiUrl, baseUrl } from "../config/var";
-import { fetchData } from "../config/data";
 
 export default function Home(props) {
-    console.log(props.dataHadiah);
     return (
-        <div>
+        <Layout listBanner={props.dataBaner} listHadiah={props.dataHadiah}>
             <Box>
                 <div className={styles.titleNumber}>
                     <span>1</span>Masukan Code Tiket
@@ -24,16 +22,17 @@ export default function Home(props) {
             <Link href={baseUrl + "page"}>
                 <a className={styles.btn}>Get Started</a>
             </Link>
-        </div>
+        </Layout>
     );
 }
 
 export async function getStaticProps() {
-    // const resDataHadiah = await fetch(`${apiUrl}Hadiah`);
-    // const dataHadiah = await resDataHadiah.json();
-    const dataHadiah = await fetchData(`Hadiah`);
+    const resDataHadiah = await fetch(`${apiUrl}Hadiah`);
+    const dataHadiah = await resDataHadiah.json();
+    const resDataBaner = await fetch(`${apiUrl}Banner/read_banner`);
+    const dataBaner = await resDataBaner.json();
     return {
-        props: { dataHadiah },
-        revalidate: 5,
+        props: { dataHadiah, dataBaner },
+        revalidate: 1,
     };
 }
