@@ -69,5 +69,6 @@ export async function getStaticProps() {
     const dataBaner = await fetchData(`Banner/read_banner`);
     return {
         props: { dataHadiah, dataBaner },
+        revalidate: 5
     };
 }
