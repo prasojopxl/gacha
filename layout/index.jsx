@@ -13,7 +13,7 @@ export default function Layout(props) {
         return (
             <div className={styles.left}>
                 <Box Height="100%">
-                    <img src="fotoempat1.jpeg" alt="banner" />
+                    <img src="fotoempat1.jpg" alt="banner" />
                     <h4>Undian Berhadiah</h4>
                     <h5>Periode Oktober 2021</h5>
                     <ul className={styles.rewards}>
