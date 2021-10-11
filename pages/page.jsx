@@ -3,9 +3,11 @@ import { Box, BoxTitle } from "../components";
 import Layout from "../layout";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
+import { fetchData } from "../config/data";
+
 import { useState } from "react";
 
-export default function Page() {
+export default function Page(props) {
     const [number, setNumber] = useState([])
     const dataVoucher = [
         {
@@ -42,7 +44,7 @@ export default function Page() {
     };
 
     return (
-        <Layout>
+        <Layout listHadiah={props.dataHadiah} listBanner={props.dataBaner}>
             <Box Height="100%">
                 <div className={styles.title}>
                     <h4 className={styles.hideXs}>11Collect your prize</h4>
@@ -53,6 +55,7 @@ export default function Page() {
                     <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
                     <div className={styles.containerGacha}>
                         <img src="gacha.svg" alt="gacha" />
+                        <img src="gacha-anim.gif" alt="gacha" />
                         <p>{number}</p>
                     </div>
                     <a className={styles.btn} onClick={handleClick}>Play</a>
@@ -60,4 +63,12 @@ export default function Page() {
             </Box>
         </Layout>
     )
+}
+
+export async function getStaticProps() {
+    const dataHadiah = await fetchData(`Hadiah`);
+    const dataBaner = await fetchData(`Banner/read_banner`);
+    return {
+        props: { dataHadiah, dataBaner },
+    };
 }

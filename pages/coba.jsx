@@ -3,9 +3,11 @@ import { Box, BoxTitle } from "../components";
 import Layout from "../layout";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
+import { fetchData } from "../config/data";
+
 import { useState } from "react";
 
-export default function Coba() {
+export default function Coba(props) {
     const [number, setNumber] = useState([])
     const dataVoucher = [
         {
@@ -42,7 +44,7 @@ export default function Coba() {
     };
 
     return (
-        <Layout>
+        <Layout listHadiah={props.dataHadiah} listBanner={props.dataBaner}>
             <Box Height="100%">
                 <div className={styles.title}>
                     <h4>Collect your prize</h4>
@@ -60,4 +62,12 @@ export default function Coba() {
             </Box>
         </Layout>
     )
+}
+
+export async function getStaticProps() {
+    const dataHadiah = await fetchData(`Hadiah`);
+    const dataBaner = await fetchData(`Banner/read_banner`);
+    return {
+        props: { dataHadiah, dataBaner },
+    };
 }
