@@ -7,19 +7,13 @@ import { apiUrl } from "../config/var";
 import styles from "./layout.module.scss"
 
 export default function Layout(props) {
-    const { listBanner, listHadiah } = props;
+    const { listHadiah } = props;
     const router = useRouter();
     const BoxLeft = () => {
         return (
             <div className={styles.left}>
                 <Box Height="100%">
-                    {
-                        listBanner.map(item => {
-                            return (
-                                <img key={item.id} src={item.image} alt={item.nama} />
-                            )
-                        })
-                    }
+                    <img src="fotoempat1.jpeg" alt="banner" />
                     <h4>Undian Berhadiah</h4>
                     <h5>Periode Oktober 2021</h5>
                     <ul className={styles.rewards}>

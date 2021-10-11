@@ -6,7 +6,7 @@ import { apiUrl, baseUrl } from "../config/var";
 
 export default function Home(props) {
     return (
-        <Layout listBanner={props.dataBaner} listHadiah={props.dataHadiah}>
+        <Layout listHadiah={props.dataHadiah}>
             <Box>
                 <div className={styles.titleNumber}>
                     <span>1</span>Masukan Code Tiket
@@ -29,10 +29,8 @@ export default function Home(props) {
 export async function getStaticProps() {
     const resDataHadiah = await fetch(`${apiUrl}Hadiah`);
     const dataHadiah = await resDataHadiah.json();
-    const resDataBaner = await fetch(`${apiUrl}Banner/read_banner`);
-    const dataBaner = await resDataBaner.json();
     return {
-        props: { dataHadiah, dataBaner },
+        props: { dataHadiah },
         revalidate: 1,
     };
 }

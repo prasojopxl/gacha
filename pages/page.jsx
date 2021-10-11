@@ -35,31 +35,54 @@ export default function Page(props) {
             status: "active"
         },
     ];
+    const [superGacha, setSuperGacha] = useState(true)
+    const [showElement, setShowElement] = useState(true)
+    const [hideMe, setHideMe] = useState(true)
     function randomVoucher(dataVoucher) {
         return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].hadiah;
     }
 
     const handleClick = () => {
         setNumber(randomVoucher(dataVoucher))
+        setShowElement(false)
+        setTimeout(() => {
+            setShowElement(true)
+        }, 5000)
+        setTimeout(() => {
+            setSuperGacha(false)
+        }, 5000)
+        setHideMe(false)
     };
+    const handleReload = () => {
+        setShowElement(true)
+        setSuperGacha(true)
+        setHideMe(true)
+    }
 
     return (
-        <Layout listBanner={props.dataBaner} listHadiah={props.dataHadiah}>
+        <Layout listHadiah={props.dataHadiah}>
             <Box Height="100%">
                 <div className={styles.title}>
                     <h4 className={styles.hideXs}>Collect your prize</h4>
                     <h5>You have <span>1 Tickets</span></h5>
                 </div>
-
                 <div className={styles.boxGame}>
                     <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
                     <div className={styles.containerGacha}>
-                        <img src="gacha.svg" alt="gacha" />
+                        {
+                            superGacha ?
+                                showElement ? <img src="static-gacha.svg" alt="gacha" width={141} style={{ position: "relative", top: "-14px" }} /> : <img src="gacha-anim2.gif" alt="gacha" />
+                                : <div className={styles.resultHadiah}>{number}</div>
+                        }
 
 
-                        <p>{number}</p>
+
                     </div>
-                    <a className={styles.btn} onClick={handleClick}>Play</a>
+                    {
+                        hideMe ? <a className={styles.btn} onClick={handleClick}>Play</a> : <a className={styles.btn} onClick={handleReload}>Reload</a>
+                    }
+
+
                 </div>
             </Box>
         </Layout>
@@ -69,10 +92,8 @@ export default function Page(props) {
 export async function getStaticProps() {
     const resDataHadiah = await fetch(`${apiUrl}Hadiah`);
     const dataHadiah = await resDataHadiah.json();
-    const resDataBaner = await fetch(`${apiUrl}Banner/read_banner`);
-    const dataBaner = await resDataBaner.json();
     return {
-        props: { dataHadiah, dataBaner },
+        props: { dataHadiah },
         revalidate: 1,
     };
 }
