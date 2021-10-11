@@ -3,21 +3,32 @@ import Head from "next/head";
 import { Fragment } from "react";
 import { Header, Box } from "../components";
 import { useRouter } from 'next/router'
+import { apiUrl } from "../config/var";
 import styles from "./layout.module.scss"
 
 export default function Layout(props) {
+    const { listBanner, listHadiah } = props;
     function BoxLeft() {
         return (
             <div className={styles.left}>
                 <Box Height="100%">
-                    <img src="sidebaner.png" srcSet="sidebaner.png 1x, sidebar@2x.jpg 2x" alt="sidebar image" />
+                    {
+                        listBanner.map(item => {
+                            return (
+                                <img key={item.id} src={item.image} alt={item.nama} />
+                            )
+                        })
+                    }
                     <h4>Undian Berhadiah</h4>
-                    <h5>Periode October 2021</h5>
+                    <h5>Periode Oktober 2021</h5>
                     <ul className={styles.rewards}>
-                        <li><span>1</span>Hadiah  Utama</li>
-                        <li><span>2</span>Hadiah  Utama</li>
-                        <li><span>3</span>Hadiah  Utama</li>
-                        <li><span>4</span>Hadiah  Utama</li>
+                        {
+                            listHadiah.map((item, i) => {
+                                return (
+                                    <li key={item.id}><span>{i + 1}</span><label>{item.nama}</label></li>
+                                )
+                            })
+                        }
                     </ul>
                     <h6>**Syarat dan ketentuan berlaku</h6>
                 </Box>

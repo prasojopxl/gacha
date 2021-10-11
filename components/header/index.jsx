@@ -23,7 +23,7 @@ export default function Header() {
     return (
         <div className={styles.header}>
             <div className={styles.contents}>
-                <Link href={baseUrl + "/"}>
+                <Link href={baseUrl}>
                     <a><img src="logo.png" alt="logo" /></a>
                 </Link>
                 <HeaderMenu />
