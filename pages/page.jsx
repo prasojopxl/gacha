@@ -4,7 +4,6 @@ import Layout from "../layout";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
 import { fetchData } from "../config/data";
-
 import { useState } from "react";
 
 export default function Page(props) {
