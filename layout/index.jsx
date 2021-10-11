@@ -8,7 +8,8 @@ import styles from "./layout.module.scss"
 
 export default function Layout(props) {
     const { listBanner, listHadiah } = props;
-    function BoxLeft() {
+    const router = useRouter();
+    const BoxLeft = () => {
         return (
             <div className={styles.left}>
                 <Box Height="100%">
@@ -35,7 +36,7 @@ export default function Layout(props) {
             </div>
         )
     }
-    const router = useRouter();
+
     return (
         <Fragment>
             <Head>
