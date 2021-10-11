@@ -46,7 +46,7 @@ export default function Page(props) {
         <Layout listHadiah={props.dataHadiah} listBanner={props.dataBaner}>
             <Box Height="100%">
                 <div className={styles.title}>
-                    <h4 className={styles.hideXs}>11Collect your prize</h4>
+                    <h4 className={styles.hideXs}>Collect your prize</h4>
                     <h5>You have <span>1 Tickets</span></h5>
                 </div>
 
