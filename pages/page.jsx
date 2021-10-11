@@ -6,6 +6,7 @@ import Link from "next/link";
 import { fetchData } from "../config/data";
 import { useState } from "react";
 
+
 export default function Page(props) {
     const [number, setNumber] = useState([])
     const dataVoucher = [
@@ -54,7 +55,8 @@ export default function Page(props) {
                     <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
                     <div className={styles.containerGacha}>
                         <img src="gacha.svg" alt="gacha" />
-                        <img src="gacha-anim.gif" alt="gacha" />
+
+
                         <p>{number}</p>
                     </div>
                     <a className={styles.btn} onClick={handleClick}>Play</a>
