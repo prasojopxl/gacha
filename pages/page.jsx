@@ -47,10 +47,10 @@ export default function Page(props) {
         setShowElement(false)
         setTimeout(() => {
             setShowElement(true)
-        }, 5000)
+        }, 6000)
         setTimeout(() => {
             setSuperGacha(false)
-        }, 5000)
+        }, 6000)
         setHideMe(false)
     };
     const handleReload = () => {
@@ -71,7 +71,7 @@ export default function Page(props) {
                     <div className={styles.containerGacha}>
                         {
                             superGacha ?
-                                showElement ? <img src="static-gacha.svg" alt="gacha" width={141} style={{ position: "relative", top: "-14px" }} /> : <img src="gacha-anim2.gif" alt="gacha" />
+                                showElement ? <img src="static-gacha.svg" alt="gacha" width={134} style={{ position: "relative", top: 14 }} /> : <img src="onetopup.gif" alt="gacha" />
                                 : <div className={styles.resultHadiah}>{number}</div>
                         }
 
