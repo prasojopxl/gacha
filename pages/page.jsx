@@ -41,22 +41,24 @@ export default function Page(props) {
     function randomVoucher(dataVoucher) {
         return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].hadiah;
     }
-
+    const timeAnimate = 6000;
     const handleClick = () => {
         setNumber(randomVoucher(dataVoucher))
         setShowElement(false)
         setTimeout(() => {
             setShowElement(true)
-        }, 6000)
+        }, timeAnimate)
         setTimeout(() => {
             setSuperGacha(false)
-        }, 6000)
+        }, timeAnimate)
         setHideMe(false)
     };
     const handleReload = () => {
         setShowElement(true)
         setSuperGacha(true)
-        setHideMe(true)
+        setTimeout(() => {
+            setHideMe(true)
+        }, timeAnimate)
     }
 
     return (
@@ -74,7 +76,6 @@ export default function Page(props) {
                                 showElement ? <img src="static-gacha.svg" alt="gacha" width={134} style={{ position: "relative", top: 14 }} /> : <img src="onetopup.gif" alt="gacha" />
                                 : <div className={styles.resultHadiah}>{number}</div>
                         }
-
 
 
                     </div>
