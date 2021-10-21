@@ -3,12 +3,14 @@ import { Box, BoxTitle } from "../components";
 import Layout from "../layout";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { apiUrl } from "../config/var";
-
+import Lottie from 'react-lottie';
+import animationData from './animation.json';
 
 export default function Page(props) {
     const [number, setNumber] = useState([])
+    const [playAnimate, setPlayAnimate] = useState(false)
     const dataVoucher = [
         {
             id: 0,
@@ -52,6 +54,8 @@ export default function Page(props) {
             setSuperGacha(false)
         }, timeAnimate)
         setHideMe(false)
+        setPlayAnimate(false)
+
     };
     const handleReload = () => {
         setShowElement(true)
@@ -59,7 +63,17 @@ export default function Page(props) {
         setTimeout(() => {
             setHideMe(true)
         }, timeAnimate)
+        setPlayAnimate(false)
+
     }
+    const defaultOptions = {
+        loop: false,
+        autoplay: false,
+        animationData: animationData,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
 
     return (
         <Layout listHadiah={props.dataHadiah}>
@@ -73,16 +87,18 @@ export default function Page(props) {
                     <div className={styles.containerGacha}>
                         {
                             superGacha ?
-                                showElement ? <img src="static-gacha.svg" alt="gacha" width={134} style={{ position: "relative", top: 14 }} /> : <img src="onetopup.gif" alt="gacha" />
-                                : <div className={styles.resultHadiah}>{number}</div>
+                                <Lottie
+                                    options={defaultOptions}
+                                    height={200}
+                                    width={200}
+                                    isStopped={playAnimate}
+                                /> : <div className={styles.resultHadiah}>{number}</div>
                         }
-
 
                     </div>
                     {
                         hideMe ? <a className={styles.btn} onClick={handleClick}>Play</a> : <a className={styles.btn} onClick={handleReload}>Reload</a>
                     }
-
 
                 </div>
             </Box>
