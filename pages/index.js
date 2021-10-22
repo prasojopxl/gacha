@@ -4,10 +4,24 @@ import styles from "../styles/home.module.scss";
 import Link from "next/link";
 import { apiUrl, baseUrl } from "../config/var";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Home(props) {
     const [voucher, setVoucher] = useState("");
     const [whatsapp, setWhatsapp] = useState("");
+    const login = () => {
+        axios
+            .post(`${apiUrl}AuthController/login`, {
+                name: voucher,
+                no_wa: whatsapp,
+            })
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log("gagal", err);
+            });
+    };
 
     return (
         <Layout listHadiah={props.dataHadiah}>
@@ -37,9 +51,9 @@ export default function Home(props) {
                     }}
                 />
             </Box>
-            <Link href={baseUrl + "page"}>
-                <a className={styles.btn}>Get Started</a>
-            </Link>
+            <a className={styles.btn} onClick={() => login()}>
+                Get Started
+            </a>
         </Layout>
     );
 }

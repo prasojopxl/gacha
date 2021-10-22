@@ -7,6 +7,8 @@ import { useState, useEffect, useRef } from "react";
 import { apiUrl } from "../config/var";
 import Lottie from 'react-lottie';
 import animationData from './animation.json';
+import axios from "axios";
+
 
 export default function Page(props) {
     const [number, setNumber] = useState([])
