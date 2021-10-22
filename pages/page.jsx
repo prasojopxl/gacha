@@ -10,7 +10,7 @@ import animationData from './animation.json';
 
 export default function Page(props) {
     const [number, setNumber] = useState([])
-    const [playAnimate, setPlayAnimate] = useState(false)
+    const [stopAnimate, setStopAnimate] = useState(true)
     const dataVoucher = [
         {
             id: 0,
@@ -38,33 +38,26 @@ export default function Page(props) {
         },
     ];
     const [superGacha, setSuperGacha] = useState(true)
-    const [showElement, setShowElement] = useState(true)
-    const [hideMe, setHideMe] = useState(true)
+    const [playBtn, setPlayBtn] = useState(true)
+    const [reloadBtn, setReloadBtn] = useState(false)
     function randomVoucher(dataVoucher) {
         return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].hadiah;
     }
     const timeAnimate = 6000;
     const handleClick = () => {
         setNumber(randomVoucher(dataVoucher))
-        setShowElement(false)
-        setTimeout(() => {
-            setShowElement(true)
-        }, timeAnimate)
         setTimeout(() => {
             setSuperGacha(false)
+            setReloadBtn(true)
         }, timeAnimate)
-        setHideMe(false)
-        setPlayAnimate(false)
+        setStopAnimate(false)
+        setPlayBtn(false)
 
     };
     const handleReload = () => {
-        setShowElement(true)
         setSuperGacha(true)
-        setTimeout(() => {
-            setHideMe(true)
-        }, timeAnimate)
-        setPlayAnimate(false)
-
+        setReloadBtn(false)
+        setPlayBtn(true)
     }
     const defaultOptions = {
         loop: false,
@@ -86,18 +79,25 @@ export default function Page(props) {
                     <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
                     <div className={styles.containerGacha}>
                         {
-                            superGacha ?
-                                <Lottie
-                                    options={defaultOptions}
-                                    height={200}
-                                    width={200}
-                                    isStopped={playAnimate}
-                                /> : <div className={styles.resultHadiah}>{number}</div>
+                            superGacha === true &&
+                            <Lottie
+                                options={defaultOptions}
+                                height={200}
+                                width={200}
+                                isStopped={stopAnimate}
+                            />
+                        }
+                        {
+                            superGacha === false &&
+                            <div className={styles.resultHadiah}>{number}</div>
                         }
 
                     </div>
                     {
-                        hideMe ? <a className={styles.btn} onClick={handleClick}>Play</a> : <a className={styles.btn} onClick={handleReload}>Reload</a>
+                        playBtn && <a className={styles.btn} onClick={handleClick}>Play</a>
+                    }
+                    {
+                        reloadBtn && <a className={styles.btn} onClick={handleReload}>Reload</a>
                     }
 
                 </div>
