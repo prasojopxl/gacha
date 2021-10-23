@@ -1,14 +1,16 @@
 import { Box } from "../components";
 import Layout from "../layout";
 import styles from "../styles/home.module.scss";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { apiUrl, baseUrl } from "../config/var";
 import { useState } from "react";
 import axios from "axios";
 
 export default function Home(props) {
+    const router = useRouter();
     const [voucher, setVoucher] = useState("");
     const [whatsapp, setWhatsapp] = useState("");
+    const [errorLogin, setErrorLogin] = useState(false);
     const login = () => {
         axios
             .post(`${apiUrl}AuthController/login`, {
@@ -16,16 +18,22 @@ export default function Home(props) {
                 no_wa: whatsapp,
             })
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
+                res.data === "error"
+                    ? setErrorLogin(true)
+                    : setErrorLogin(false);
+                localStorage.setItem("jwtGacha", res.data);
+                router.push(`${baseUrl}page`);
             })
             .catch((err) => {
-                console.log("gagal", err);
+                console.log("gagal222");
             });
     };
 
     return (
         <Layout listHadiah={props.dataHadiah}>
             <Box>
+                {errorLogin && <div className={styles.error}>Gagal Login</div>}
                 <div className={styles.titleNumber}>
                     <span>1</span>Masukan Code Tiket
                 </div>

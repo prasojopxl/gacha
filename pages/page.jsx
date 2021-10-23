@@ -11,6 +11,7 @@ import axios from "axios";
 
 
 export default function Page(props) {
+    const token = localStorage.getItem("jwtGacha");
     const [number, setNumber] = useState([])
     const [stopAnimate, setStopAnimate] = useState(true)
     const dataVoucher = [
@@ -69,42 +70,43 @@ export default function Page(props) {
             preserveAspectRatio: "xMidYMid slice"
         }
     };
-
     return (
-        <Layout listHadiah={props.dataHadiah}>
-            <Box Height="100%">
-                <div className={styles.title}>
-                    <h4 className={styles.hideXs}>Collect your prize</h4>
-                    <h5>You have <span>1 Tickets</span></h5>
-                </div>
-                <div className={styles.boxGame}>
-                    <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
-                    <div className={styles.containerGacha}>
+        token ?
+            <Layout listHadiah={props.dataHadiah}>
+                <Box Height="100%">
+                    <div className={styles.title}>
+                        <h4 className={styles.hideXs}>Collect your prize</h4>
+                        <h5>You have <span>1 Tickets</span></h5>
+                    </div>
+                    <div className={styles.boxGame}>
+                        <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
+                        <div className={styles.containerGacha}>
+                            {
+                                superGacha === true &&
+                                <Lottie
+                                    options={defaultOptions}
+                                    height={200}
+                                    width={200}
+                                    isStopped={stopAnimate}
+                                />
+                            }
+                            {
+                                superGacha === false &&
+                                <div className={styles.resultHadiah}>{number}</div>
+                            }
+
+                        </div>
                         {
-                            superGacha === true &&
-                            <Lottie
-                                options={defaultOptions}
-                                height={200}
-                                width={200}
-                                isStopped={stopAnimate}
-                            />
+                            playBtn && <a className={styles.btn} onClick={handleClick}>Play</a>
                         }
                         {
-                            superGacha === false &&
-                            <div className={styles.resultHadiah}>{number}</div>
+                            reloadBtn && <a className={styles.btn} onClick={handleReload}>Reload</a>
                         }
 
                     </div>
-                    {
-                        playBtn && <a className={styles.btn} onClick={handleClick}>Play</a>
-                    }
-                    {
-                        reloadBtn && <a className={styles.btn} onClick={handleReload}>Reload</a>
-                    }
-
-                </div>
-            </Box>
-        </Layout>
+                </Box>
+            </Layout>
+            : <div>tidak login</div>
     )
 }
 
