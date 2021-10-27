@@ -11,44 +11,63 @@ import axios from "axios";
 
 
 export default function Page(props) {
-    const token = localStorage.getItem("jwtGacha");
-    const [number, setNumber] = useState([])
+    const token = localStorage.getItem("jwtGacha")
+    const [numberReward, setNumberReward] = useState([])
     const [stopAnimate, setStopAnimate] = useState(true)
-    const dataVoucher = [
+    const blankRewards = [
         {
-            id: 0,
-            code: "ABC000",
-            hadiah: "Smartphone",
-            status: "active"
+            "id": "001",
+            "nama": "Anda Kurang Beruntung",
+            "image": "blankreward.png",
+            "jumlah": "1000",
+            "status": "1"
         },
         {
-            id: 1,
-            code: "ABC111",
-            hadiah: "Pulsa 20rb",
-            status: "active"
+            "id": "002",
+            "nama": "Anda Kurang Beruntung",
+            "image": "blankreward.png",
+            "jumlah": "1000",
+            "status": "1"
         },
         {
-            id: 2,
-            code: "ABC222",
-            hadiah: "Smart TV",
-            status: "active"
+            "id": "003",
+            "nama": "Anda Kurang Beruntung",
+            "image": "blankreward.png",
+            "jumlah": "1000",
+            "status": "1"
         },
         {
-            id: 3,
-            code: "ABC333",
-            hadiah: "Kurang Beruntung",
-            status: "active"
+            "id": "004",
+            "nama": "Anda Kurang Beruntung",
+            "image": "blankreward.png",
+            "jumlah": "1000",
+            "status": "1"
         },
-    ];
+        {
+            "id": "005",
+            "nama": "Silahkan Coba Lagi",
+            "image": "blankreward.png",
+            "jumlah": "1000",
+            "status": "1"
+        },
+        {
+            "id": "006",
+            "nama": "Kurang Beruntung",
+            "image": "blankreward.png",
+            "jumlah": "1000",
+            "status": "1"
+        }
+    ]
+    const dataVoucher = props.dataHadiah.concat(blankRewards);
     const [superGacha, setSuperGacha] = useState(true)
     const [playBtn, setPlayBtn] = useState(true)
     const [reloadBtn, setReloadBtn] = useState(false)
     function randomVoucher(dataVoucher) {
-        return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].hadiah;
+        return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].nama;
     }
     const timeAnimate = 6000;
     const handleClick = () => {
-        setNumber(randomVoucher(dataVoucher))
+        setNumberReward(randomVoucher(dataVoucher))
         setTimeout(() => {
             setSuperGacha(false)
             setReloadBtn(true)
@@ -70,43 +89,46 @@ export default function Page(props) {
             preserveAspectRatio: "xMidYMid slice"
         }
     };
+
+    useEffect(() => {
+    }, [])
+
     return (
-        token ?
-            <Layout listHadiah={props.dataHadiah}>
-                <Box Height="100%">
-                    <div className={styles.title}>
-                        <h4 className={styles.hideXs}>Collect your prize</h4>
-                        <h5>You have <span>1 Tickets</span></h5>
-                    </div>
-                    <div className={styles.boxGame}>
-                        <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
-                        <div className={styles.containerGacha}>
-                            {
-                                superGacha === true &&
-                                <Lottie
-                                    options={defaultOptions}
-                                    height={200}
-                                    width={200}
-                                    isStopped={stopAnimate}
-                                />
-                            }
-                            {
-                                superGacha === false &&
-                                <div className={styles.resultHadiah}>{number}</div>
-                            }
-
-                        </div>
+        <Layout listHadiah={props.dataHadiah}>
+            {token}
+            <Box Height="100%">
+                <div className={styles.title}>
+                    <h4 className={styles.hideXs}>Collect your prize</h4>
+                    <h5>You have <span>1 Tickets</span></h5>
+                </div>
+                <div className={styles.boxGame}>
+                    <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
+                    <div className={styles.containerGacha}>
                         {
-                            playBtn && <a className={styles.btn} onClick={handleClick}>Play</a>
+                            superGacha === true &&
+                            <Lottie
+                                options={defaultOptions}
+                                height={200}
+                                width={200}
+                                isStopped={stopAnimate}
+                            />
                         }
                         {
-                            reloadBtn && <a className={styles.btn} onClick={handleReload}>Reload</a>
+                            superGacha === false &&
+                            <div className={styles.resultHadiah}>{numberReward}</div>
                         }
 
                     </div>
-                </Box>
-            </Layout>
-            : <div>tidak login</div>
+                    {
+                        playBtn && <a className={styles.btn} onClick={handleClick}>Play</a>
+                    }
+                    {
+                        reloadBtn && <a className={styles.btn} onClick={handleReload}>Reload</a>
+                    }
+
+                </div>
+            </Box>
+        </Layout>
     )
 }
 
