@@ -17,13 +17,9 @@ export default function Layout(props) {
                     <h4>Undian Berhadiah</h4>
                     <h5>Periode Oktober 2021</h5>
                     <ul className={styles.rewards}>
-                        {
-                            listHadiah.map((item, i) => {
-                                return (
-                                    <li key={item.id}><span>{i + 1}</span><label>{item.nama}</label></li>
-                                )
-                            })
-                        }
+                        <li><span>1</span><label>sadadsa</label></li>
+                        <li><span>1</span><label>sadadsa</label></li>
+                        <li><span>1</span><label>sadadsa</label></li>
                     </ul>
                     <h6>**Syarat dan ketentuan berlaku</h6>
                 </Box>

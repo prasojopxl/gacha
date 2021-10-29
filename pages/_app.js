@@ -14,11 +14,13 @@ function MyApp({ Component, pageProps }) {
     useEffect(() => {
         setLs(localStorage);
         setIsAuthenticated(localStorage.getItem("jwtGacha"));
+        localStorage.getItem("jwtGacha") === "error" &&
+            setIsAuthenticated(false);
     }, []);
 
     useEffect(() => {
         if (disabledDirectAccess.includes(router.route)) {
-            window.location.href = "/login";
+            window.location.href = "/";
         }
     }, [disabledDirectAccess, router.route]);
 
