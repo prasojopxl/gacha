@@ -17,10 +17,7 @@ export default function Login(props) {
         axios
             .post(`${apiUrl2}rest_server?action=login`, {
                 kode_vocher: voucher,
-                no_wa: whatsapp,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                no_wa: whatsapp
             })
             .then((res) => {
                 window.location.href = "/";
