@@ -3,7 +3,7 @@ import { Box } from '../../components';
 import Layout from '../../layout'
 import styles from "../../styles/home.module.scss";
 import { useRouter } from "next/router";
-import { apiUrl, baseUrl } from "../../config/var";
+import { apiUrl, apiUrl2, baseUrl } from "../../config/var";
 import { useState } from "react";
 
 import axios from "axios";
@@ -15,8 +15,8 @@ export default function Login(props) {
     const [errorLogin, setErrorLogin] = useState(false);
     const login = () => {
         axios
-            .post(`${apiUrl}AuthController/login`, {
-                name: voucher,
+            .post(`${apiUrl2}rest_server?action=login`, {
+                kode_vocher: voucher,
                 no_wa: whatsapp,
                 headers: {
                     'Content-Type': 'application/json',

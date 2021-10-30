@@ -3,7 +3,7 @@ import Layout from "../layout";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { apiUrl } from "../config/var";
+import { apiUrl, apiUrl2 } from "../config/var";
 import Lottie from "react-lottie";
 import animationData from "./animation.json";
 import axios from "axios";
@@ -11,6 +11,7 @@ import axios from "axios";
 export default function Home(props) {
     const token = localStorage.getItem("jwtGacha");
     const [numberReward, setNumberReward] = useState([]);
+    const [user, setUser] = useState([]);
     const [stopAnimate, setStopAnimate] = useState(true);
     const blankRewards = [
         {
@@ -56,7 +57,7 @@ export default function Home(props) {
             status: "1",
         },
     ];
-    const dataVoucher = props.dataHadiah.concat(blankRewards);
+    const dataVoucher = props.dataHadiah.data.concat(blankRewards);
     const [superGacha, setSuperGacha] = useState(true);
     const [playBtn, setPlayBtn] = useState(true);
     const [reloadBtn, setReloadBtn] = useState(false);
@@ -72,6 +73,7 @@ export default function Home(props) {
         }, timeAnimate);
         setStopAnimate(false);
         setPlayBtn(false);
+        quota();
     };
     const handleReload = () => {
         setSuperGacha(true);
@@ -86,18 +88,41 @@ export default function Home(props) {
             preserveAspectRatio: "xMidYMid slice",
         },
     };
+    const getUser = () => {
+        axios
+            .get(
+                `${apiUrl2}user_data?action=${localStorage.getItem(
+                    "idVoucher"
+                )}`
+            )
+            .then((res) => {
+                setUser(res.data.data);
+                console.log(res.data.data);
+            });
+    };
+    const quota = () => {
+        console.log("hello");
+    };
 
     useEffect(() => {
         token === "error" && localStorage.removeItem("jwtGacha");
+        getUser();
     }, []);
 
     return (
         <Layout listHadiah={props.dataHadiah}>
             <Box Height="100%">
                 <div className={styles.title}>
-                    <h4 className={styles.hideXs}>Collect your prize</h4>
+                    <h4 className={styles.hideXs}>Kumpulkan Hadiahmu</h4>
                     <h5>
-                        You have <span>1 Tickets</span>
+                        Kesempatan{" "}
+                        {user.map((item, i) => {
+                            return (
+                                <span key={item.id}>
+                                    {item.sisa_kesempatan}x
+                                </span>
+                            );
+                        })}
                     </h5>
                 </div>
                 <div className={styles.boxGame}>
@@ -134,7 +159,9 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-    const resDataHadiah = await fetch(`${apiUrl}Hadiah`);
+    const resDataHadiah = await fetch(
+        `${apiUrl2}rest_server?action=hadiah_data`
+    );
     const dataHadiah = await resDataHadiah.json();
     return {
         props: { dataHadiah },
