@@ -3,7 +3,7 @@ import Layout from "../layout";
 import styles from "../styles/page.module.scss";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { apiUrl, apiUrl2 } from "../config/var";
+import { apiUrl, apiUrl2, imageUrl } from "../config/var";
 import Lottie from "react-lottie";
 import animationData from "./animation.json";
 import axios from "axios";
@@ -12,26 +12,27 @@ export default function Home(props) {
     const token = localStorage.getItem("jwtGacha");
     // const [numberReward, setNumberReward] = useState([]);
     const [idHadiah, setIdHadiah] = useState([]);
+    const [detailHadiah, setDetailHadiah] = useState([]);
     const [user, setUser] = useState([]);
     const [stopAnimate, setStopAnimate] = useState(true);
     const [sisaKesempatan, setSisaKesempatan] = useState("");
     const blankRewards = [
         {
-            id: "001",
+            id: "100001",
             nama: "Anda Kurang Beruntung",
             image: "noreward.svg",
             jumlah: "1000",
             status: "1",
         },
         {
-            id: "002",
+            id: "100002",
             nama: "Anda Kurang Beruntung",
             image: "noreward.svg",
             jumlah: "1000",
             status: "1",
         },
         {
-            id: "003",
+            id: "100003",
             nama: "Anda Kurang Beruntung",
             image: "noreward.svg",
             jumlah: "1000",
@@ -47,13 +48,16 @@ export default function Home(props) {
         return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].id;
     }
 
-    const randomHadiah = () => {};
+    const randomHadiah = () => {
+        axios.get(`${apiUrl2}get_hadiah?action=${idHadiah}`).then((res) => {
+            setDetailHadiah(res.data.data);
+        });
+    };
     const getRandomHadiah = () => {
         localStorage.setItem("nextReward", idHadiah);
     };
     const timeAnimate = 6000;
     const handleClick = () => {
-        setIdHadiah(randomVoucher(dataVoucher));
         randomHadiah();
         getRandomHadiah();
         setTimeout(() => {
@@ -68,6 +72,7 @@ export default function Home(props) {
         );
     };
     const handleReload = () => {
+        setIdHadiah(randomVoucher(dataVoucher));
         var sisaKesempatan = user[0].sisa_kesempatan;
         setSuperGacha(true);
         setReloadBtn(false);
@@ -142,9 +147,38 @@ export default function Home(props) {
                                 isStopped={stopAnimate}
                             />
                         )}
+
+                        {}
+
                         {superGacha === false && (
                             <div className={styles.resultHadiah}>
-                                hadiahnya: {idHadiah}
+                                {idHadiah === "100001" ||
+                                idHadiah === "100002" ||
+                                idHadiah === "100003" ? (
+                                    <div>
+                                        <img
+                                            className={styles.imageReward}
+                                            src="https://admin07.onenetwork.id/assets/uploads/hadiah/noreward.svg"
+                                            alt=""
+                                        />
+                                    </div>
+                                ) : null}
+
+                                {detailHadiah.map((item) => {
+                                    return (
+                                        <div
+                                            key={item.id}
+                                            className={styles.boxRewards}
+                                        >
+                                            <img
+                                                className={styles.imageReward}
+                                                src={imageUrl + item.image}
+                                                alt=""
+                                            />
+                                            <h3>{item.nama}</h3>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         )}
                     </div>
