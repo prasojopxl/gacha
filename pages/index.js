@@ -16,6 +16,7 @@ export default function Home(props) {
     const [user, setUser] = useState([]);
     const [stopAnimate, setStopAnimate] = useState(true);
     const [sisaKesempatan, setSisaKesempatan] = useState("");
+    const [submitReward, setSubmitReward] = useState(false);
     const blankRewards = [
         {
             id: "100001",
@@ -82,6 +83,22 @@ export default function Home(props) {
         } else {
             setPlayBtn(true);
         }
+
+        // submit data
+        console.log("Vouchernya: " + localStorage.getItem("idVoucher"));
+        console.log("Hadiahnya : " + idHadiah);
+        axios
+            .post(
+                `${apiUrl2}get_item?action=${localStorage.getItem(
+                    "idVoucher"
+                )}`,
+                {
+                    id_hadiah: "1000",
+                }
+            )
+            .then((res) => {
+                console.log(res);
+            });
     };
     const defaultOptions = {
         loop: false,
@@ -198,7 +215,7 @@ export default function Home(props) {
                                         className={styles.btn}
                                         onClick={handleReload}
                                     >
-                                        Reload
+                                        Submit Hadiah & Reload
                                     </a>
                                 )}
                             </div>

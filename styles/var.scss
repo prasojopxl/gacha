@@ -29,6 +29,23 @@ $space: 15px;
     }
 }
 
+.btnSubmit {
+    background: $color-red;
+    color: #fff;
+    border-radius: $radius;
+    padding: 12px 15px;
+    border: #fff solid 1px;
+    min-width: 150px;
+    text-align: center;
+    display: inline-block;
+    transition: $animate;
+    cursor: pointer;
+    &:hover {
+        transition: $animate;
+        background: $color-gold4;
+    }
+}
+
 @media (max-width: 767px) {
     .hideXs {
         display: none !important;
