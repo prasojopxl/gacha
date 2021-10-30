@@ -17,42 +17,21 @@ export default function Home(props) {
         {
             id: "001",
             nama: "Anda Kurang Beruntung",
-            image: "blankreward.png",
+            image: "noreward.svg",
             jumlah: "1000",
             status: "1",
         },
         {
             id: "002",
             nama: "Anda Kurang Beruntung",
-            image: "blankreward.png",
+            image: "noreward.svg",
             jumlah: "1000",
             status: "1",
         },
         {
             id: "003",
             nama: "Anda Kurang Beruntung",
-            image: "blankreward.png",
-            jumlah: "1000",
-            status: "1",
-        },
-        {
-            id: "004",
-            nama: "Anda Kurang Beruntung",
-            image: "blankreward.png",
-            jumlah: "1000",
-            status: "1",
-        },
-        {
-            id: "005",
-            nama: "Silahkan Coba Lagi",
-            image: "blankreward.png",
-            jumlah: "1000",
-            status: "1",
-        },
-        {
-            id: "006",
-            nama: "Kurang Beruntung",
-            image: "blankreward.png",
+            image: "noreward.svg",
             jumlah: "1000",
             status: "1",
         },
@@ -62,7 +41,15 @@ export default function Home(props) {
     const [playBtn, setPlayBtn] = useState(true);
     const [reloadBtn, setReloadBtn] = useState(false);
     function randomVoucher(dataVoucher) {
-        return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].nama;
+        const url = "https://admin07.onenetwork.id/assets/uploads/hadiah/";
+        const dataImage =
+            url +
+            dataVoucher[Math.floor(Math.random() * dataVoucher.length)].image;
+        return (
+            <div>
+                <img className={styles.imageReward} src={dataImage} alt="" />
+            </div>
+        );
     }
     const timeAnimate = 6000;
     const handleClick = () => {
