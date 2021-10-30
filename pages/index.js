@@ -10,7 +10,8 @@ import axios from "axios";
 
 export default function Home(props) {
     const token = localStorage.getItem("jwtGacha");
-    const [numberReward, setNumberReward] = useState([]);
+    // const [numberReward, setNumberReward] = useState([]);
+    const [idHadiah, setIdHadiah] = useState([]);
     const [user, setUser] = useState([]);
     const [stopAnimate, setStopAnimate] = useState(true);
     const blankRewards = [
@@ -36,31 +37,35 @@ export default function Home(props) {
             status: "1",
         },
     ];
-    const dataVoucher = props.dataHadiah.data.concat(blankRewards);
+    // const dataVoucher = props.dataHadiah.data.concat(blankRewards);
+    const dataVoucher = props.dataHadiah.data;
     const [superGacha, setSuperGacha] = useState(true);
     const [playBtn, setPlayBtn] = useState(true);
     const [reloadBtn, setReloadBtn] = useState(false);
     function randomVoucher(dataVoucher) {
-        const url = "https://admin07.onenetwork.id/assets/uploads/hadiah/";
-        const dataImage =
-            url +
-            dataVoucher[Math.floor(Math.random() * dataVoucher.length)].image;
-        return (
-            <div>
-                <img className={styles.imageReward} src={dataImage} alt="" />
-            </div>
-        );
+        return dataVoucher[Math.floor(Math.random() * dataVoucher.length)].id;
     }
+
+    const randomHadiah = () => {
+        setIdHadiah(randomVoucher(dataVoucher));
+    };
+    const getRandomHadiah = () => {
+        axios.get(`${apiUrl2}get_hadiah?action=${idHadiah}`).then((res) => {
+            console.log(res);
+        });
+    };
     const timeAnimate = 6000;
     const handleClick = () => {
-        setNumberReward(randomVoucher(dataVoucher));
+        randomHadiah();
+        getRandomHadiah();
         setTimeout(() => {
             setSuperGacha(false);
             setReloadBtn(true);
+            // setNumberReward(randomVoucher(dataVoucher));
+            console.log(`id hadiah adalah ${idHadiah}`);
         }, timeAnimate);
         setStopAnimate(false);
         setPlayBtn(false);
-        quota();
     };
     const handleReload = () => {
         setSuperGacha(true);
@@ -84,11 +89,7 @@ export default function Home(props) {
             )
             .then((res) => {
                 setUser(res.data.data);
-                console.log(res.data.data);
             });
-    };
-    const quota = () => {
-        console.log("hello");
     };
 
     useEffect(() => {
@@ -98,6 +99,7 @@ export default function Home(props) {
 
     return (
         <Layout listHadiah={props.dataHadiah}>
+            ini: {idHadiah}
             <Box Height="100%">
                 <div className={styles.title}>
                     <h4 className={styles.hideXs}>Kumpulkan Hadiahmu</h4>
@@ -125,7 +127,7 @@ export default function Home(props) {
                         )}
                         {superGacha === false && (
                             <div className={styles.resultHadiah}>
-                                {numberReward}
+                                hadiahnya: {idHadiah}
                             </div>
                         )}
                     </div>
