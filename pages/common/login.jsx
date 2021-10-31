@@ -14,32 +14,39 @@ export default function Login(props) {
     const [whatsapp, setWhatsapp] = useState("");
     const [errorLogin, setErrorLogin] = useState(false);
     const login = () => {
-        axios
-            .post(`${apiUrl2}rest_server?action=login`, {
-                kode_vocher: voucher,
-                no_wa: whatsapp
-            })
-            .then((res) => {
-                window.location.href = "/";
-                // voucher == ""
-                //     ? setErrorLogin(true)
-                //     : setErrorLogin(false);
-                voucher == "" ? localStorage.removeItem("jwtGacha") : localStorage.setItem("jwtGacha", res.data)
-                localStorage.setItem("idVoucher", voucher);
+        // whatsapp == "" && alert("Masukan nomer whatsapp")
+        if (whatsapp === "") {
+            alert("Masukan nomer whatsapp")
+            localStorage.removeItem("jwtGacha")
+        }
+        else {
+            axios
+                .post(`${apiUrl2}rest_server?action=login`, {
+                    kode_vocher: voucher,
+                    no_wa: whatsapp
+                })
+                .then((res) => {
+                    window.location.href = "/";
+                    // voucher == ""
+                    //     ? setErrorLogin(true)
+                    //     : setErrorLogin(false);
+                    voucher == "" ? localStorage.removeItem("jwtGacha") : localStorage.setItem("jwtGacha", res.data)
+                    localStorage.setItem("idVoucher", voucher);
 
-            })
-            .then(data => {
-                if (data.isAuthenticated) {
-                    props.ls.setItem('isLoggedIn', true)
-                    window.location.href = '/'
-                } else {
-                    alert("Invalid username or password")
-                }
-            })
-            .catch((err) => {
-                console.log("gagal222");
-            });
-        whatsapp == "" && alert("Masukan nomer whatsapp")
+                })
+                .then(data => {
+                    if (data.isAuthenticated) {
+                        props.ls.setItem('isLoggedIn', true)
+                        window.location.href = '/'
+                    } else {
+                        alert("Invalid username or password")
+                    }
+                })
+                .catch((err) => {
+                    console.log("gagal222");
+                });
+
+        }
     };
     return (
         <Layout>
