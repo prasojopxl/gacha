@@ -48,6 +48,8 @@ export default function Layout(props) {
             <Head>
                 <title>onetopud.id | Gacha</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link rel="shortcut icon" href="https://gacha.onenetwork.id/logo.png" type="image/x-icon" />
+
             </Head>
             <Header />
             <div className={styles.bodyweb}>
