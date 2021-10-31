@@ -68,9 +68,16 @@ export default function Home(props) {
         }, timeAnimate);
         setStopAnimate(false);
         setPlayBtn(false);
-        axios.post(
-            `${apiUrl2}user_edit?action=${localStorage.getItem("idVoucher")}`
-        );
+        axios
+            .post(
+                `${apiUrl2}user_edit?action=${localStorage.getItem(
+                    "idVoucher"
+                )}`
+            )
+            .then((res) => {});
+        axios
+            .post(`${apiUrl2}hadiah_edit?action=${idHadiah}`)
+            .then((res) => {});
     };
     const handleReload = () => {
         setIdHadiah(randomVoucher(dataVoucher));
