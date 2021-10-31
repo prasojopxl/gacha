@@ -125,6 +125,10 @@ export default function Home(props) {
             .then((res) => {
                 setUser(res.data.data);
                 setSisaKesempatan(res.data.data[0].sisa_kesempatan);
+            })
+            .catch((error) => {
+                window.location.href = "/";
+                localStorage.removeItem("jwtGacha");
             });
     };
     const exitApp = () => {

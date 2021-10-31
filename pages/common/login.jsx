@@ -21,10 +21,10 @@ export default function Login(props) {
             })
             .then((res) => {
                 window.location.href = "/";
-                res.data === "error"
-                    ? setErrorLogin(true)
-                    : setErrorLogin(false);
-                localStorage.setItem("jwtGacha", res.data);
+                // voucher == ""
+                //     ? setErrorLogin(true)
+                //     : setErrorLogin(false);
+                voucher == "" ? localStorage.removeItem("jwtGacha") : localStorage.setItem("jwtGacha", res.data)
                 localStorage.setItem("idVoucher", voucher);
 
             })
