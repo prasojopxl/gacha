@@ -39,6 +39,7 @@ export default function Login(props) {
             .catch((err) => {
                 console.log("gagal222");
             });
+        whatsapp == "" && alert("Masukan nomer whatsapp")
     };
     return (
         <Layout>
