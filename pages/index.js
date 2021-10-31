@@ -100,11 +100,17 @@ export default function Home(props) {
                     "idVoucher"
                 )}`,
                 {
-                    id_hadiah: "1000",
+                    id_hadiah: idHadiah,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                    },
                 }
             )
             .then((res) => {
                 console.log(res);
+            })
+            .catch((error) => {
+                console.log(error);
             });
     };
     const defaultOptions = {
