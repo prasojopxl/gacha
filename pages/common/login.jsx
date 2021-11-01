@@ -96,7 +96,7 @@ export default function Login(props) {
                     <span>2</span>Masukan Nomor Whatsapp
                 </div>
                 <input
-                    type="text"
+                    type="number"
                     placeholder="Masukan Nomor"
                     value={whatsapp}
                     onChange={(e) => {
