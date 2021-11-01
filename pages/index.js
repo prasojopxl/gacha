@@ -98,13 +98,7 @@ export default function Home(props) {
             .post(
                 `${apiUrl2}get_item?action=${localStorage.getItem(
                     "idVoucher"
-                )}`,
-                {
-                    id_hadiah: idHadiah,
-                    headers: {
-                        "Access-Control-Allow-Origin": "*",
-                    },
-                }
+                )}&hadiah=${idHadiah}`
             )
             .then((res) => {
                 console.log(res);
@@ -152,11 +146,8 @@ export default function Home(props) {
         <Layout listHadiah={props.dataHadiah}>
             <Box Height="100%">
                 <div className={styles.title}>
-                    <h4 className={styles.hideXs}>Kumpulkan Hadiahmu</h4>
+                    <h4 className={styles.hideXs}>&nbsp;</h4>
                     <div className={styles.titleSisa}>
-                        <h5>
-                            Sisa Voucher <span>{sisaKesempatan} | </span>
-                        </h5>
                         <div
                             onClick={exitApp}
                             style={{
@@ -171,7 +162,7 @@ export default function Home(props) {
                     </div>
                 </div>
                 <div className={styles.boxGame}>
-                    <BoxTitle>Gacha Undian Berhadiah</BoxTitle>
+                    <BoxTitle>Uji keberuntunganmu!</BoxTitle>
                     <div className={styles.containerGacha}>
                         {superGacha === true && (
                             <Lottie
@@ -232,7 +223,7 @@ export default function Home(props) {
                                         className={styles.btn}
                                         onClick={handleReload}
                                     >
-                                        Submit Hadiah & Reload
+                                        OK
                                     </a>
                                 )}
                             </div>
