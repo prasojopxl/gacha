@@ -69,6 +69,7 @@ export default function Home(props) {
         }, timeAnimate);
         setStopAnimate(false);
         setPlayBtn(false);
+        setSisaKesempatan(0);
         axios
             .post(
                 `${apiUrl2}user_edit?action=${localStorage.getItem(
@@ -82,9 +83,9 @@ export default function Home(props) {
     };
     const handleReload = () => {
         setIdHadiah(randomVoucher(dataVoucher));
-        var sisaKesempatan = user[0].sisa_kesempatan;
         setSuperGacha(true);
         setReloadBtn(false);
+        setOldUser(true);
         if (sisaKesempatan === "0") {
             setPlayBtn(false);
             alert("sisa vouche habis");
