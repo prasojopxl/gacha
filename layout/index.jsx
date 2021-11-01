@@ -11,6 +11,7 @@ import axios from "axios";
 
 export default function Layout(props) {
     const [listHadiah, setListHadiah] = useState([]);;
+    const [listBanner, setListBanner] = useState([])
     const router = useRouter();
     const getHadiah = () => {
         axios.get(`${apiUrl2}rest_server?action=hadiah_data`)
@@ -18,14 +19,30 @@ export default function Layout(props) {
                 setListHadiah(res.data.data)
             })
     }
+    const getBanner = () => {
+        axios.get(`${apiUrl2}rest_server?action=banner_data`)
+            .then((res) => {
+                setListBanner(res.data.data)
+            })
+    }
+    const urlBanner = "https://admin07.onenetwork.id/assets/uploads/banner/";
+
     useEffect(() => {
         getHadiah();
+        getBanner();
     }, [])
     const BoxLeft = () => {
         return (
             <div className={styles.left}>
                 <Box Height="100%">
-                    <img src="fotoempat1.jpg" alt="banner" />
+                    {
+                        listBanner.map((item, i) => {
+                            return (
+                                <div key={item.id}><img src={urlBanner + item.image} alt={item.nama} /></div>
+                            )
+                        })
+                    }
+
                     <h4>Menangkan Hadiah Berikut</h4>
                     {/* <h5>Periode Oktober 2021</h5> */}
                     <ul className={styles.rewards}>
