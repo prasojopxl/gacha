@@ -146,7 +146,7 @@ export default function Home(props) {
 
     return (
         <Layout listHadiah={props.dataHadiah}>
-            {setOldUser ? (
+            {oldUser ? (
                 <Box Height="100%">
                     <div className={styles.boxBlankPage}>
                         <div className={styles.contentBlank}>
