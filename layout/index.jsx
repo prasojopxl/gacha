@@ -14,7 +14,7 @@ export default function Layout(props) {
     const [listBanner, setListBanner] = useState([])
     const router = useRouter();
     const getHadiah = () => {
-        axios.get(`${apiUrl2}rest_server?action=hadiah_data`)
+        axios.get(`${apiUrl2}rest_server?action=hadiah_data_all`)
             .then((res) => {
                 setListHadiah(res.data.data)
             })
