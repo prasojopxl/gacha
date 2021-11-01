@@ -57,12 +57,20 @@
     text-align: center;
 }
 
+.contentBlank {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
 .blankWord {
     color: $color-red;
     font-size: 20px;
     display: block;
     text-align: center;
     width: 100%;
+    margin: 0;
+    padding-bottom: 10px;
 }
 
 .containerGacha {

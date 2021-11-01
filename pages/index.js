@@ -149,9 +149,14 @@ export default function Home(props) {
             {setOldUser ? (
                 <Box Height="100%">
                     <div className={styles.boxBlankPage}>
-                        <h4 className={styles.blankWord}>
-                            Voucher Sudah Habis :({" "}
-                        </h4>
+                        <div className={styles.contentBlank}>
+                            <h4 className={styles.blankWord}>
+                                Voucher Sudah Habis :({" "}
+                            </h4>
+                            <div onClick={exitApp} className={styles.btn}>
+                                Keluar
+                            </div>
+                        </div>
                     </div>
                 </Box>
             ) : (
