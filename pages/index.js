@@ -16,7 +16,8 @@ export default function Home(props) {
     const [user, setUser] = useState([]);
     const [stopAnimate, setStopAnimate] = useState(true);
     const [sisaKesempatan, setSisaKesempatan] = useState("");
-    const [submitReward, setSubmitReward] = useState(false);
+    const [oldUser, setOldUser] = useState(false);
+
     const blankRewards = [
         {
             id: "100001",
@@ -125,6 +126,7 @@ export default function Home(props) {
             .then((res) => {
                 setUser(res.data.data);
                 setSisaKesempatan(res.data.data[0].sisa_kesempatan);
+                res.data.data[0].sisa_kesempatan == 0 && setOldUser(true);
             })
             .catch((error) => {
                 window.location.href = "/";
@@ -144,93 +146,105 @@ export default function Home(props) {
 
     return (
         <Layout listHadiah={props.dataHadiah}>
-            <Box Height="100%">
-                <div className={styles.title}>
-                    <h4 className={styles.hideXs}>&nbsp;</h4>
-                    <div className={styles.titleSisa}>
-                        <div
-                            onClick={exitApp}
-                            style={{
-                                color: "red",
-                                display: "inline-block",
-                                marginLeft: "5px",
-                                cursor: "pointer",
-                            }}
-                        >
-                            Keluar
+            {setOldUser ? (
+                <Box Height="100%">
+                    <div className={styles.boxBlankPage}>
+                        <h4 className={styles.blankWord}>
+                            Voucher Sudah Habis :({" "}
+                        </h4>
+                    </div>
+                </Box>
+            ) : (
+                <Box Height="100%">
+                    <div className={styles.title}>
+                        <h4 className={styles.hideXs}>&nbsp;</h4>
+                        <div className={styles.titleSisa}>
+                            <div
+                                onClick={exitApp}
+                                style={{
+                                    color: "red",
+                                    display: "inline-block",
+                                    marginLeft: "5px",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                Keluar
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.boxGame}>
-                    <BoxTitle>Uji keberuntunganmu!</BoxTitle>
-                    <div className={styles.containerGacha}>
-                        {superGacha === true && (
-                            <Lottie
-                                options={defaultOptions}
-                                height={200}
-                                width={200}
-                                isStopped={stopAnimate}
-                            />
-                        )}
+                    <div className={styles.boxGame}>
+                        <BoxTitle>Uji keberuntunganmu!</BoxTitle>
+                        <div className={styles.containerGacha}>
+                            {superGacha === true && (
+                                <Lottie
+                                    options={defaultOptions}
+                                    height={200}
+                                    width={200}
+                                    isStopped={stopAnimate}
+                                />
+                            )}
 
-                        {}
+                            {}
 
-                        {superGacha === false && (
-                            <div className={styles.resultHadiah}>
-                                {idHadiah === "100001" ||
-                                idHadiah === "100002" ||
-                                idHadiah === "100003" ? (
-                                    <div>
-                                        <img
-                                            className={styles.imageReward}
-                                            src="https://admin07.onenetwork.id/assets/uploads/hadiah/noreward.svg"
-                                            alt=""
-                                        />
-                                    </div>
-                                ) : null}
-
-                                {detailHadiah.map((item) => {
-                                    return (
-                                        <div
-                                            key={item.id}
-                                            className={styles.boxRewards}
-                                        >
+                            {superGacha === false && (
+                                <div className={styles.resultHadiah}>
+                                    {idHadiah === "100001" ||
+                                    idHadiah === "100002" ||
+                                    idHadiah === "100003" ? (
+                                        <div>
                                             <img
                                                 className={styles.imageReward}
-                                                src={imageUrl + item.image}
+                                                src="https://admin07.onenetwork.id/assets/uploads/hadiah/noreward.svg"
                                                 alt=""
                                             />
-                                            <h3>{item.nama}</h3>
                                         </div>
-                                    );
-                                })}
-                            </div>
-                        )}
+                                    ) : null}
+
+                                    {detailHadiah.map((item) => {
+                                        return (
+                                            <div
+                                                key={item.id}
+                                                className={styles.boxRewards}
+                                            >
+                                                <img
+                                                    className={
+                                                        styles.imageReward
+                                                    }
+                                                    src={imageUrl + item.image}
+                                                    alt=""
+                                                />
+                                                <h3>{item.nama}</h3>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
+                        {user.map((item) => {
+                            return (
+                                <div key={item.id}>
+                                    {item.sisa_kesempatan !== "0" && playBtn && (
+                                        <a
+                                            className={styles.btn}
+                                            onClick={handleClick}
+                                        >
+                                            Play
+                                        </a>
+                                    )}
+                                    {reloadBtn && (
+                                        <a
+                                            className={styles.btn}
+                                            onClick={handleReload}
+                                        >
+                                            OK
+                                        </a>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
-                    {user.map((item) => {
-                        return (
-                            <div key={item.id}>
-                                {item.sisa_kesempatan !== "0" && playBtn && (
-                                    <a
-                                        className={styles.btn}
-                                        onClick={handleClick}
-                                    >
-                                        Play
-                                    </a>
-                                )}
-                                {reloadBtn && (
-                                    <a
-                                        className={styles.btn}
-                                        onClick={handleReload}
-                                    >
-                                        OK
-                                    </a>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
-            </Box>
+                </Box>
+            )}
         </Layout>
     );
 }

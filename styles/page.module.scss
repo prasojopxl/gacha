@@ -47,6 +47,24 @@
     padding: $space;
 }
 
+.boxBlankPage {
+    background: url("https://stagingaja.com/static/hero.jpg");
+    background-size: cover;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.blankWord {
+    color: $color-red;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
 .containerGacha {
     margin: 50px auto;
 }
