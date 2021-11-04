@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Layout(props) {
-    const [listHadiah, setListHadiah] = useState([]);;
+    const [listHadiah, setListHadiah] = useState([]);
     const [listBanner, setListBanner] = useState([])
     const router = useRouter();
     const getHadiah = () => {
@@ -71,7 +71,7 @@ export default function Layout(props) {
             <Header />
             <div className={styles.bodyweb}>
                 <div className={styles.contents}>
-                    {router.pathname === "/" ? <div className={styles.hideXs}><BoxLeft /></div> : <BoxLeft />}
+                    <BoxLeft />
                     <div className={styles.right}>
                         {props.children}
                     </div>

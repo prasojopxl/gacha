@@ -17,7 +17,7 @@ export default function Home(props) {
     const [stopAnimate, setStopAnimate] = useState(true);
     const [sisaKesempatan, setSisaKesempatan] = useState("");
     const [oldUser, setOldUser] = useState(false);
-
+    console.log(props.dataHadiah);
     const blankRewards = [
         {
             id: "100001",
@@ -42,7 +42,6 @@ export default function Home(props) {
         },
     ];
     const dataVoucher = props.dataHadiah.data.concat(blankRewards);
-    // const dataVoucher = props.dataHadiah.data;
     const [superGacha, setSuperGacha] = useState(true);
     const [playBtn, setPlayBtn] = useState(true);
     const [reloadBtn, setReloadBtn] = useState(false);
